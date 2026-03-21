@@ -1,0 +1,26 @@
+# caches.allow -- 削除許可パターン
+#
+# 書式: <glob パターン>[TAB<ガードプロセス名>]
+#
+# - glob パターンは ~/Library/Caches/ 以下のディレクトリ名にマッチさせる
+# - ガードプロセス名を指定すると、そのプロセスが起動中はスキップする
+# - # で始まる行はコメント、空行は無視される
+
+# ブラウザ
+com.google.Chrome	Google Chrome
+com.microsoft.Edge	Microsoft Edge
+com.apple.Safari	Safari
+
+# 開発ツール
+com.microsoft.VSCode	Electron
+com.jetbrains.*	java
+
+# メディア
+com.spotify.client	Spotify
+
+# Electron 系
+io.nwjs.*
+
+# Python / パッケージマネージャ（常時削除可）
+pip
+uv

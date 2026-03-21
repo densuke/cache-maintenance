@@ -1,0 +1,12 @@
+# caches.deny -- 削除禁止パターン（allow より優先）
+#
+# allow にマッチしていても、ここに記載されたパターンは削除しない
+# 書式: <glob パターン>（プロセス名列は不要）
+
+# iCloud 関連
+com.apple.bird
+com.apple.cloudphotod
+CloudKit
+
+# システム
+com.apple.nsservicescache
