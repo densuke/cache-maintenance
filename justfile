@@ -35,7 +35,7 @@ lint:
 # bats テストを実行
 test:
     @echo "=== bats tests ==="
-    {{BATS}} {{BATS_TESTS}}/test_common.bats {{BATS_TESTS}}/test_config.bats
+    {{BATS}} {{BATS_TESTS}}/test_common.bats {{BATS_TESTS}}/test_config.bats {{BATS_TESTS}}/test_cleaners.bats
 
 # lint + test まとめて実行
 check: lint test
