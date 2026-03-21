@@ -22,26 +22,34 @@ read_patterns() {
 
 # should_clean <path>
 # パスのベース名が allow リストにマッチし、かつ deny リストにマッチしない場合 0 を返す
+#
+# NOTE: bash 3.2 (macOS /bin/bash) bug: multiple process substitutions < <(...)
+# inside a function called repeatedly from a loop trigger SIGTRAP (exit 133).
+# Workaround: use here-string <<< "$(cmd)" instead of < <(cmd).
 should_clean() {
     local target="$1"
-    local name
+    local name patterns
     name="$(basename "$target")"
 
     # deny チェック（マッチしたら削除しない）
+    patterns="$(read_patterns caches.deny)" || true
     while IFS=$'\t' read -r pattern _rest; do
+        [ -z "$pattern" ] && continue
         # shellcheck disable=SC2254
         case "$name" in
             $pattern) return 1 ;;
         esac
-    done < <(read_patterns caches.deny)
+    done <<< "$patterns"
 
     # allow チェック（マッチしたら削除対象）
+    patterns="$(read_patterns caches.allow)" || true
     while IFS=$'\t' read -r pattern _rest; do
+        [ -z "$pattern" ] && continue
         # shellcheck disable=SC2254
         case "$name" in
             $pattern) return 0 ;;
         esac
-    done < <(read_patterns caches.allow)
+    done <<< "$patterns"
 
     return 1
 }
@@ -49,11 +57,15 @@ should_clean() {
 # get_guard_process <name>
 # allow ファイルでパターンにマッチした行の2カラム目（プロセス名）を stdout に出力する
 # 2カラム目がない場合は空文字を返す
+#
+# NOTE: same bash 3.2 workaround — use <<< instead of < <(...)
 get_guard_process() {
     local name="$1"
-    local pattern process_name
+    local pattern process_name patterns
 
+    patterns="$(read_patterns caches.allow)" || true
     while IFS=$'\t' read -r pattern process_name _rest; do
+        [ -z "$pattern" ] && continue
         # shellcheck disable=SC2254
         case "$name" in
             $pattern)
@@ -61,7 +73,7 @@ get_guard_process() {
                 return 0
                 ;;
         esac
-    done < <(read_patterns caches.allow)
+    done <<< "$patterns"
 
     echo ""
 }
