@@ -48,8 +48,8 @@ dry-run:
 run:
     bash {{SRC}}/run.sh
 
-# ~/.config/maintenance に設定を配置する
-install:
+# ~/.config/maintenance に設定を配置する（lint を先に通す）
+install: lint
     @echo "=== installing config ==="
     mkdir -p {{CONFIG_DIR}}/config
     mkdir -p {{CONFIG_DIR}}/logs
