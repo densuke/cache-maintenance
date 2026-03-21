@@ -56,8 +56,6 @@ measure_freed() {
 
     # DRY_RUN=1 のときはコマンドを実行せず 0 を返す
     if [ "${DRY_RUN:-0}" = "1" ]; then
-        # dry-run でもコマンド自体は呼び出す（safe_rm が内部でスキップする）
-        "$@" 2>/dev/null
         echo "0"
         return 0
     fi
