@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+dist/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+
+# bats (サブモジュールは追跡するので除外しない)
+
+# ログ
+logs/
+*.log
+
+# macOS
+.DS_Store
+
+# エディタ
+.idea/
+.vscode/
+*.swp
