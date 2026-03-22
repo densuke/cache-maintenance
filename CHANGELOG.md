@@ -162,7 +162,7 @@
 
 ## 2026-03-22（続）
 
-### CLAUDE.md 追加・xcode.sh bash 3.2 バグ修正 `(次のコミット)`
+### CLAUDE.md 追加・xcode.sh bash 3.2 バグ修正 `1e579ca`
 
 - `CLAUDE.md` 新規作成（プロジェクト向け Claude Code 注意事項）
   - コミット前の必須作業（CHANGELOG 更新・lint・test）
