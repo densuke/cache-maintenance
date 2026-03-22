@@ -43,14 +43,18 @@ _clean_device_support() {
     [ -d "$ds_dir" ] || { echo "0"; return 0; }
 
     # バージョン番号でソートして古い順に取得し、末尾 keep 個以外を削除
-    local total_count old_dirs
+    local total_count
     total_count=$(find "$ds_dir" -maxdepth 1 -mindepth 1 -type d 2>/dev/null | wc -l | tr -d ' ')
     local remove_count=$(( total_count - keep ))
     if [ "$remove_count" -le 0 ]; then
         echo "0"
         return 0
     fi
-    mapfile -t old_dirs < <(find "$ds_dir" -maxdepth 1 -mindepth 1 -type d 2>/dev/null | sort -V | head -n "$remove_count")
+    # bash 3.2 互換: mapfile は bash 4.0+ のため here-string で代替
+    local old_dirs=()
+    while IFS= read -r line; do
+        [ -n "$line" ] && old_dirs+=("$line")
+    done <<< "$(find "$ds_dir" -maxdepth 1 -mindepth 1 -type d 2>/dev/null | sort -V | head -n "$remove_count")"
 
     if [ "${#old_dirs[@]}" -eq 0 ]; then
         echo "0"

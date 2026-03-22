@@ -157,3 +157,19 @@
   - `measure_freed()` — コマンド前後のディスク使用量を比較して解放バイト数を返す
 - bats-core・bats-support・bats-assert を Git サブモジュールとして追加
 - `tests/bats/test_common.bats` 新規作成（11 件）
+
+---
+
+## 2026-03-22（続）
+
+### CLAUDE.md 追加・xcode.sh bash 3.2 バグ修正 `(次のコミット)`
+
+- `CLAUDE.md` 新規作成（プロジェクト向け Claude Code 注意事項）
+  - コミット前の必須作業（CHANGELOG 更新・lint・test）
+  - クリーナー追加時のチェックリスト
+  - bash 3.2 互換性の禁止事項と代替パターン（`mapfile`・複数 process substitution）
+  - 設定ファイル書式・テストの書き方
+- `src/cleaners/xcode.sh` バグ修正: `mapfile` を bash 3.2 互換の `while read` + here-string に置換
+  - iOS/watchOS DeviceSupport ディレクトリが存在する環境では `mapfile: command not found`
+    で失敗していた（bash 3.2 では bash 4.0+ の `mapfile` が使えない）
+  - テストが通っていたのはテスト環境に DeviceSupport が存在しなかったため
