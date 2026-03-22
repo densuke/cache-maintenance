@@ -99,6 +99,10 @@ just uninstall         launchd 登録を削除し設定ディレクトリも消�
 
 コード構成や新しいクリーナーの追加方法は [docs/architecture.md](docs/architecture.md) を参照してください。
 
+## 改版履歴
+
+[CHANGELOG.md](CHANGELOG.md) を参照してください。
+
 ## ライセンス
 
 MIT
