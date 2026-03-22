@@ -6,7 +6,7 @@
 
 ## 2026-03-22
 
-### Docker クリーナー追加 `(次コミット)`
+### Docker クリーナー追加 `dee3e6d`
 
 - `src/cleaners/docker.sh` 新規作成
   - `docker image prune -f`: ダングリングイメージ（どのコンテナにも紐付かないイメージ）を削除
