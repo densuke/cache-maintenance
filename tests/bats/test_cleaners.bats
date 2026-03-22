@@ -83,6 +83,16 @@ teardown() {
 }
 
 # ---------------------------------------------------------------------------
+# docker.sh
+# ---------------------------------------------------------------------------
+
+@test "docker: dry-run exits 0 and outputs 'docker: 0 bytes'" {
+    run bash "$PROJECT_ROOT/src/cleaners/docker.sh"
+    assert_success
+    assert_output --partial "docker: 0 bytes"
+}
+
+# ---------------------------------------------------------------------------
 # run.sh (orchestrator)
 # ---------------------------------------------------------------------------
 
@@ -100,6 +110,7 @@ teardown() {
     assert_output --partial "app-caches:"
     assert_output --partial "xcode:"
     assert_output --partial "sccache:"
+    assert_output --partial "docker:"
 }
 
 @test "run.sh: dry-run log has no double entries (log lines appear once)" {

@@ -6,7 +6,21 @@
 
 ## 2026-03-22
 
-### sccache LRU クリーナー追加 `(次コミット)`
+### Docker クリーナー追加 `(次コミット)`
+
+- `src/cleaners/docker.sh` 新規作成
+  - `docker image prune -f`: ダングリングイメージ（どのコンテナにも紐付かないイメージ）を削除
+  - `docker builder prune -f`: BuildKit ビルドキャッシュを削除
+  - `--all` は使用しない（停止中コンテナが参照するイメージを保護）
+  - Docker 未インストール時・daemon 停止時はスキップ
+  - `docker` コマンドの出力から "Total reclaimed space" を解析して解放バイト数を算出
+- `src/run.sh` にクリーナーを追加（sccache の後）
+- `justfile` の `lint` ターゲットに `docker.sh` を追加
+- `tests/bats/test_cleaners.bats` に dry-run テストを追加（合計 37 件）
+
+---
+
+### sccache LRU クリーナー追加 `d201f07`
 
 - `src/cleaners/sccache.sh` 新規作成
   - 対象: `~/Library/Caches/Mozilla.sccache/`

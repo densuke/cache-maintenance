@@ -90,7 +90,8 @@ main() {
         "pip:${cleaners_dir}/pip.sh" \
         "app-caches:${cleaners_dir}/caches.sh" \
         "xcode:${cleaners_dir}/xcode.sh" \
-        "sccache:${cleaners_dir}/sccache.sh"
+        "sccache:${cleaners_dir}/sccache.sh" \
+        "docker:${cleaners_dir}/docker.sh"
     do
         local name="${cleaner%%:*}"
         local script="${cleaner#*:}"

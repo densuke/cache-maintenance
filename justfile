@@ -30,7 +30,8 @@ lint:
         {{SRC}}/cleaners/pip.sh \
         {{SRC}}/cleaners/caches.sh \
         {{SRC}}/cleaners/xcode.sh \
-        {{SRC}}/cleaners/sccache.sh
+        {{SRC}}/cleaners/sccache.sh \
+        {{SRC}}/cleaners/docker.sh
     @echo "shellcheck: OK"
 
 # bats テストを実行
