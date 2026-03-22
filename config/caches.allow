@@ -6,21 +6,60 @@
 # - ガードプロセス名を指定すると、そのプロセスが起動中はスキップする
 # - # で始まる行はコメント、空行は無視される
 
-# ブラウザ
+# ---- ブラウザ ----
 com.google.Chrome	Google Chrome
 com.microsoft.Edge	Microsoft Edge
 com.apple.Safari	Safari
+# Arc Browser（ディレクトリが2つある）
+Arc	Arc
+company.thebrowser.Browser	Arc
+# Brave Browser
+com.brave.Browser	Brave Browser
+BraveSoftware	Brave Browser
 
-# 開発ツール
+# ---- 開発ツール ----
 com.microsoft.VSCode	Electron
 com.jetbrains.*	java
+# ターミナル（起動中はスキップ）
+com.googlecode.iterm2	iTerm2
+com.mitchellh.ghostty	ghostty
+# エディタ
+Zed	Zed
+# Go ビルドキャッシュ（常時削除可）
+go-build
+# Bun JS ランタイムキャッシュ（常時削除可）
+bun
+# mise ツールダウンロードキャッシュ（常時削除可）
+mise
+# Claude CLI キャッシュ（常時削除可）
+claude-cli-nodejs
 
-# メディア
+# ---- AI ツール ----
+com.anthropic.claudefordesktop	Claude
+com.openai.chat	ChatGPT
+# Ollama（プロセス名 "ollama" で確認）
+com.electron.ollama	ollama
+ollama	ollama
+
+# ---- コミュニケーション ----
+com.hnc.Discord	Discord
+us.zoom.xos	zoom
+us.zoom.updater
+
+# ---- メディア ----
 com.spotify.client	Spotify
+org.videolan.vlc	VLC
+# VOICEVOX 音声合成 ORT キャッシュ（常時削除可）
+voicevox_ort
 
-# Electron 系
+# ---- ユーティリティ ----
+com.raycast.macos	Raycast
+# Tailscale（VPN: 起動中はスキップ）
+io.tailscale.ipn.macsys	tailscale
+
+# ---- Electron 系（汎用） ----
 io.nwjs.*
 
-# Python / パッケージマネージャ（常時削除可）
+# ---- Python / パッケージマネージャ（常時削除可） ----
 pip
 uv

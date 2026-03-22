@@ -48,7 +48,7 @@ dry-run:
 run:
     bash {{SRC}}/run.sh
 
-# ~/.config/maintenance に設定を配置する（lint を先に通す）
+# ~/.config/maintenance に設定を配置する（lint を先に通す・既存ファイルは上書きしない）
 install: lint
     @echo "=== installing config ==="
     mkdir -p {{CONFIG_DIR}}/config
@@ -57,6 +57,14 @@ install: lint
     cp -n config/caches.deny  {{CONFIG_DIR}}/config/caches.deny  || true
     @echo "Config installed to {{CONFIG_DIR}}/config/"
     @echo "Run 'just install-launchd' to register the launchd job"
+
+# 設定テンプレートを強制上書きで更新する（カスタマイズ内容は失われる）
+update-config: lint
+    @echo "=== updating config (overwrite) ==="
+    mkdir -p {{CONFIG_DIR}}/config
+    cp config/caches.allow {{CONFIG_DIR}}/config/caches.allow
+    cp config/caches.deny  {{CONFIG_DIR}}/config/caches.deny
+    @echo "Config updated at {{CONFIG_DIR}}/config/"
 
 # launchd に週次ジョブを登録する
 install-launchd: install

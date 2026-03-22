@@ -6,6 +6,21 @@
 
 ## 2026-03-22
 
+### caches.allow 拡張・justfile update-config 追加 `(次コミット)`
+
+- `config/caches.allow` を 6 エントリから 21 エントリに拡張
+  - **ブラウザ**: Arc、company.thebrowser.Browser、com.brave.Browser、BraveSoftware
+  - **開発ツール**: go-build、bun、mise、claude-cli-nodejs、com.googlecode.iterm2、com.mitchellh.ghostty、Zed
+  - **AI ツール**: com.anthropic.claudefordesktop、com.openai.chat、com.electron.ollama、ollama
+  - **コミュニケーション**: com.hnc.Discord、us.zoom.xos、us.zoom.updater
+  - **メディア**: org.videolan.vlc、voicevox_ort
+  - **ユーティリティ**: com.raycast.macos、io.tailscale.ipn.macsys
+- `justfile` に `update-config` ターゲットを追加（設定ファイルを強制上書きで更新）
+  - `just install` は `-n` フラグで既存ファイルを保護（カスタマイズ維持）
+  - `just update-config` は `cp` で強制上書き（テンプレートを最新版に同期）
+
+---
+
 ### ドキュメント整備 `a2283cd`
 
 - `README.md` を全面書き直し（特徴・クイックスタート・コマンド一覧・ログ例）
