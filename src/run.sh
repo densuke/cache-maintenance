@@ -89,7 +89,8 @@ main() {
         "brew:${cleaners_dir}/brew.sh" \
         "pip:${cleaners_dir}/pip.sh" \
         "app-caches:${cleaners_dir}/caches.sh" \
-        "xcode:${cleaners_dir}/xcode.sh"
+        "xcode:${cleaners_dir}/xcode.sh" \
+        "sccache:${cleaners_dir}/sccache.sh"
     do
         local name="${cleaner%%:*}"
         local script="${cleaner#*:}"

@@ -6,7 +6,20 @@
 
 ## 2026-03-22
 
-### caches.allow 拡張・justfile update-config 追加 `(次コミット)`
+### sccache LRU クリーナー追加 `(次コミット)`
+
+- `src/cleaners/sccache.sh` 新規作成
+  - 対象: `~/Library/Caches/Mozilla.sccache/`
+  - LRU 方式: atime が `SCCACHE_MAX_AGE_DAYS` 日以上前のファイルを削除（デフォルト: 14日）
+  - APFS の atime を利用するため部分削除が安全（sccache はインデックスなしのハッシュキャッシュ）
+  - sccache ディレクトリが存在しない場合はスキップ
+- `src/run.sh` にクリーナーを追加（brew → pip → app-caches → xcode → sccache）
+- `justfile` の `lint` ターゲットに `sccache.sh` を追加
+- `tests/bats/test_cleaners.bats` に dry-run テストを追加（合計 36 件）
+
+---
+
+### caches.allow 拡張・justfile update-config 追加 `50f93ad`
 
 - `config/caches.allow` を 6 エントリから 21 エントリに拡張
   - **ブラウザ**: Arc、company.thebrowser.Browser、com.brave.Browser、BraveSoftware

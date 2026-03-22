@@ -73,6 +73,16 @@ teardown() {
 }
 
 # ---------------------------------------------------------------------------
+# sccache.sh
+# ---------------------------------------------------------------------------
+
+@test "sccache: dry-run exits 0 and outputs 'sccache: 0 bytes'" {
+    run bash "$PROJECT_ROOT/src/cleaners/sccache.sh"
+    assert_success
+    assert_output --partial "sccache: 0 bytes"
+}
+
+# ---------------------------------------------------------------------------
 # run.sh (orchestrator)
 # ---------------------------------------------------------------------------
 
@@ -89,6 +99,7 @@ teardown() {
     assert_output --partial "pip:"
     assert_output --partial "app-caches:"
     assert_output --partial "xcode:"
+    assert_output --partial "sccache:"
 }
 
 @test "run.sh: dry-run log has no double entries (log lines appear once)" {
